@@ -1,0 +1,36 @@
+@AuditEventService_HostAddress = https://localhost:7150
+
+POST {{AuditEventService_HostAddress}}/events
+Content-Type: application/json
+
+{
+  "id": "688d849f-da61-4c7e-babc-954741b69b4a",
+    "timestamp": "2025-06-02T19:07:33.3585661+08:00",
+    "serviceName": "Test1",
+    "eventType": "FILE.UPLOAD",
+    "payload": "{}"
+}
+
+###
+
+POST {{AuditEventService_HostAddress}}/events
+Content-Type: application/json
+
+{
+    "id": "636fc316-4b93-499a-b9f5-6d22a6c7ccaa",
+    "timestamp": "2025-06-02T19:07:33.3589569+08:00",
+    "serviceName": "Test2",
+    "eventType": "USER.DELETED",
+    "payload": "{}"
+}
+
+###
+
+POST {{AuditEventService_HostAddress}}/events/replay
+Content-Type: application/json
+
+[
+  { "688d849f-da61-4c7e-babc-954741b69b4a" }, {636fc316-4b93-499a-b9f5-6d22a6c7ccaa}
+]
+
+###
